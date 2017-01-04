@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description"
+        content="CIS 19x: an introductory class at Penn on Android development.">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>CIS 19x: Android</title>
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet"
+        href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css">
+  <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+<h2>CIS 19x: Android</h2>
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div class="mdl-tabs__tab-bar">
+    <a href="index.html" class="mdl-tabs__tab">Overview</a>
+    <a href="lectures.html" class="mdl-tabs__tab">Lectures</a>
+    <a href="assignments.html" class="mdl-tabs__tab is-active">Assignments</a>
+    <a href="staff.html" class="mdl-tabs__tab">Staff</a>
+  </div>
+  <div class="hw1 mdl-tabs__panel is-active">
+    <img src="images/hw1.png"/>
+    <h4>Homework 1, due 2/6 by midnight</h4>
+    <h5>Overview</h5>
+    <p>To get you warmed up with Android, the first assignment is to make a
+      simple calculator.
+      It'll only have to support a limited set of features:
+    <ul>
+      <li>Addition and subtraction (so that you don't have to worry about order
+        of operations)
+      </li>
+      <li>
+        Support for floating point numbers (with an associated "dot" button)
+      </li>
+      <li>A display row that shows the current algebraic expression
+      </li>
+      <li>A display row that shows the expression's result. This row should
+        always be equal to the algebraic expression, so that updates to the
+        expression are immediately reflected in the result.
+      </li>
+      <li>A "clear" button to clear the calculator state (both display rows
+        become zero)
+      </li>
+      <li>An "equal" button that replaces the current expression with its result
+      </li>
+    </ul>
+    <h5>Requirements</h5>
+    <p>Your app doesn't need to look <i>exactly</i> like the example on the
+      right, but it should look similar. Since the calculator's
+      functionality is limited, it's important to
+      make sure that it actually works as intended. A few things to consider:
+    <ul>
+      <li>A number can have at most one decimal point</li>
+      <li>Plus and minus symbols cannot be adjacent</li>
+    </ul>
+    You must include <b>at least 5</b> test cases to demonstrate correct
+    functionality. Android's <a
+          href="https://developer.android.com/training/testing/start/index.html">documentation</a>
+    provides concise examples of how to
+    perform testing. We recommend integration tests with Expresso. An example
+    might look like:
+    <pre>
+      @RunWith(AndroidJUnit4.class)
+      public class CalculatorTest {
+
+          @Rule
+          public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+
+          @Test
+          public void simplePlus() {
+              onView(withText("2")).perform(click());
+              onView(withId(R.id.expression)).check(matches(withText("2")));
+              onView(withText("+")).perform(click());
+              onView(withId(R.id.expression)).check(matches(withText("2+")));
+          }
+      }
+    </pre>
+    </p>
+    <h5>Grading</h5>
+    <ul>
+      <li>Layout - 30%: does the calculator have all the needed buttons?</li>
+      <li>Logic - 40%: does the calculator work as expected?</li>
+      <li>Tests - 20%: are tests included? Do they demonstrate correct
+        functionality in interesting cases?
+      </li>
+      <li>Style - 10%: are styles or logic duplicated?</li>
+    </ul>
+    </p>
+  </div>
+</div>
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>
